@@ -417,6 +417,10 @@
       line-height: 1.6;
     }
   </style>
+  <link rel='stylesheet' id='simply-gallery-block-frontend-css'
+    href='./css/simply-gallery-block-blocks-pgc_sgb.min.style.css' media='all' />
+  <link rel='stylesheet' id='pgc-simply-gallery-plugin-lightbox-style-css'
+    href='./css/simply-gallery-block-plugins-pgc_sgb_lightbox.min.style.css' media='all' />
   <link rel='stylesheet' id='wdp-centered-css-css' href='./css/weddingpress-assets-css-wdp-centered-timeline.min.css'
     media='all' />
   <link rel='stylesheet' id='wdp-horizontal-css-css' href='./css/weddingpress-assets-css-wdp-horizontal-styles.min.css'
@@ -497,6 +501,19 @@
     href="http://127.0.0.1/wordpress/wp-json/oembed/1.0/embed?url=http%3A%2F%2F127.0.0.1%2Fwordpress%2Ftes%2F" />
   <link rel="alternate" type="text/xml+oembed"
     href="http://127.0.0.1/wordpress/wp-json/oembed/1.0/embed?url=http%3A%2F%2F127.0.0.1%2Fwordpress%2Ftes%2F&#038;format=xml" />
+  <noscript>
+    <style>
+      .simply-gallery-amp {
+        display: block !important;
+      }
+    </style>
+  </noscript><noscript>
+    <style>
+      .sgb-preloader {
+        display: none !important;
+      }
+    </style>
+  </noscript>
   <meta name="generator"
     content="Elementor 3.17.2; features: e_dom_optimization, e_optimized_assets_loading, e_optimized_css_loading, additional_custom_breakpoints, block_editor_assets_optimize, e_image_loading_optimization; settings: css_print_method-external, google_font-enabled, font_display-swap">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -619,11 +636,12 @@
                       <div class="elementor-widget-container">
                         <script>
                           var settingAutoplay = 'yes';
-                          window.settingAutoplay = settingAutoplay === 'yes' ? false : true;
+                          window.settingAutoplay = settingAutoplay === 'disable' ? false : true;
                         </script>
-                        <div id="audio-container" class="audio-box"><audio id="song" autoplay>
+                        <div id="audio-container" class="audio-box"> <audio id="song" loop>
                             <source
-                              src="audio/y2mate.com - Alan Walker Style  Loreen   Tattoo Cover By Hernandz Official Music Video.mp3" type="audio/mpeg">
+                              src="http://127.0.0.1/wordpress/wp-content/uploads/2023/11/y2mate.com-Alan-Walker-Style-Loreen-Tattoo-Cover-By-Hernandz-Official-Music-Video.mp3"
+                              type="audio/mp3">
                           </audio>
                           <div class="elementor-icon-wrapper" id="unmute-sound" style="display: none;">
                             <div class="elementor-icon"> <i aria-hidden="true" class="fa fa-play-circle"></i> </div>
@@ -1364,164 +1382,260 @@
               </div>
             </div>
             <div
-              class="elementor-element elementor-element-be7dfb0 elementor-widget__width-auto wdp-sticky-section-no elementor-widget elementor-widget-image-gallery"
-              data-id="be7dfb0" data-element_type="widget" data-widget_type="image-gallery.default">
+              class="elementor-element elementor-element-0d18454 wdp-sticky-section-no elementor-widget elementor-widget-gallery"
+              data-id="0d18454" data-element_type="widget"
+              data-settings="{&quot;gallery_layout&quot;:&quot;masonry&quot;,&quot;gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:11,&quot;sizes&quot;:[]},&quot;columns&quot;:4,&quot;columns_tablet&quot;:2,&quot;columns_mobile&quot;:1,&quot;gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;link_to&quot;:&quot;file&quot;,&quot;overlay_background&quot;:&quot;yes&quot;,&quot;content_hover_animation&quot;:&quot;fade-in&quot;}"
+              data-widget_type="gallery.default">
               <div class="elementor-widget-container">
                 <style>
-                  /*! elementor - v3.17.0 - 01-11-2023 */
-                  .elementor-image-gallery .gallery-item {
-                    display: inline-block;
-                    text-align: center;
-                    vertical-align: top;
+                  /*! elementor-pro - v3.16.0 - 20-09-2023 */
+                  .elementor-gallery__container {
+                    min-height: 1px
+                  }
+
+                  .elementor-gallery-item {
+                    position: relative;
+                    overflow: hidden;
+                    display: block;
+                    text-decoration: none;
+                    border: solid var(--image-border-width) var(--image-border-color);
+                    border-radius: var(--image-border-radius)
+                  }
+
+                  .elementor-gallery-item__content,
+                  .elementor-gallery-item__overlay {
+                    height: 100%;
                     width: 100%;
-                    max-width: 100%;
-                    margin: 0 auto
+                    position: absolute;
+                    top: 0;
+                    left: 0
                   }
 
-                  .elementor-image-gallery .gallery-item img {
-                    margin: 0 auto
+                  .elementor-gallery-item__overlay {
+                    mix-blend-mode: var(--overlay-mix-blend-mode);
+                    transition-duration: var(--overlay-transition-duration);
+                    transition-property: mix-blend-mode, transform, opacity, background-color
                   }
 
-                  .elementor-image-gallery .gallery-item .gallery-caption {
-                    margin: 0
+                  .elementor-gallery-item__image.e-gallery-image {
+                    transition-duration: var(--image-transition-duration);
+                    transition-property: filter, transform
                   }
 
-                  .elementor-image-gallery figure img {
-                    display: block
+                  .elementor-gallery-item__content {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: var(--content-justify-content, center);
+                    align-items: center;
+                    text-align: var(--content-text-align);
+                    padding: var(--content-padding)
                   }
 
-                  .elementor-image-gallery figure figcaption {
+                  .elementor-gallery-item__content>div {
+                    transition-duration: var(--content-transition-duration)
+                  }
+
+                  .elementor-gallery-item__content.elementor-gallery--sequenced-animation>div:nth-child(2) {
+                    transition-delay: calc(var(--content-transition-delay) / 3)
+                  }
+
+                  .elementor-gallery-item__content.elementor-gallery--sequenced-animation>div:nth-child(3) {
+                    transition-delay: calc(var(--content-transition-delay) / 3 * 2)
+                  }
+
+                  .elementor-gallery-item__content.elementor-gallery--sequenced-animation>div:nth-child(4) {
+                    transition-delay: calc(var(--content-transition-delay) / 3 * 3)
+                  }
+
+                  .elementor-gallery-item__description {
+                    color: var(--description-text-color, #fff);
                     width: 100%
                   }
 
-                  .gallery-spacing-custom .elementor-image-gallery .gallery-icon {
-                    padding: 0
+                  .elementor-gallery-item__title {
+                    color: var(--title-text-color, #fff);
+                    font-weight: 700;
+                    width: 100%
                   }
 
-                  @media (min-width:768px) {
-                    .elementor-image-gallery .gallery-columns-2 .gallery-item {
-                      max-width: 50%
-                    }
-
-                    .elementor-image-gallery .gallery-columns-3 .gallery-item {
-                      max-width: 33.33%
-                    }
-
-                    .elementor-image-gallery .gallery-columns-4 .gallery-item {
-                      max-width: 25%
-                    }
-
-                    .elementor-image-gallery .gallery-columns-5 .gallery-item {
-                      max-width: 20%
-                    }
-
-                    .elementor-image-gallery .gallery-columns-6 .gallery-item {
-                      max-width: 16.666%
-                    }
-
-                    .elementor-image-gallery .gallery-columns-7 .gallery-item {
-                      max-width: 14.28%
-                    }
-
-                    .elementor-image-gallery .gallery-columns-8 .gallery-item {
-                      max-width: 12.5%
-                    }
-
-                    .elementor-image-gallery .gallery-columns-9 .gallery-item {
-                      max-width: 11.11%
-                    }
-
-                    .elementor-image-gallery .gallery-columns-10 .gallery-item {
-                      max-width: 10%
-                    }
+                  .elementor-gallery__titles-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: var(--titles-container-justify-content, center);
+                    margin-bottom: 20px
                   }
 
-                  @media (min-width:480px) and (max-width:767px) {
-
-                    .elementor-image-gallery .gallery.gallery-columns-2 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-3 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-4 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-5 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-6 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-7 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-8 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-9 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-10 .gallery-item {
-                      max-width: 50%
-                    }
+                  .elementor-gallery__titles-container:not(.e--pointer-framed) .elementor-item:after,
+                  .elementor-gallery__titles-container:not(.e--pointer-framed) .elementor-item:before {
+                    background-color: var(--galleries-pointer-bg-color-hover)
                   }
 
-                  @media (max-width:479px) {
+                  .elementor-gallery__titles-container:not(.e--pointer-framed) .elementor-item.elementor-item-active:after,
+                  .elementor-gallery__titles-container:not(.e--pointer-framed) .elementor-item.elementor-item-active:before {
+                    background-color: var(--galleries-pointer-bg-color-active)
+                  }
 
-                    .elementor-image-gallery .gallery.gallery-columns-2 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-3 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-4 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-5 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-6 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-7 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-8 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-9 .gallery-item,
-                    .elementor-image-gallery .gallery.gallery-columns-10 .gallery-item {
-                      max-width: 100%
-                    }
+                  .elementor-gallery__titles-container.e--pointer-framed .elementor-item:before {
+                    border-color: var(--galleries-pointer-bg-color-hover);
+                    border-width: var(--galleries-pointer-border-width)
+                  }
+
+                  .elementor-gallery__titles-container.e--pointer-framed .elementor-item:after {
+                    border-color: var(--galleries-pointer-bg-color-hover)
+                  }
+
+                  .elementor-gallery__titles-container.e--pointer-framed .elementor-item.elementor-item-active:after,
+                  .elementor-gallery__titles-container.e--pointer-framed .elementor-item.elementor-item-active:before {
+                    border-color: var(--galleries-pointer-bg-color-active)
+                  }
+
+                  .elementor-gallery__titles-container.e--pointer-framed.e--animation-draw .elementor-item:before {
+                    border-left-width: var(--galleries-pointer-border-width);
+                    border-bottom-width: var(--galleries-pointer-border-width);
+                    border-right-width: 0;
+                    border-top-width: 0
+                  }
+
+                  .elementor-gallery__titles-container.e--pointer-framed.e--animation-draw .elementor-item:after {
+                    border-left-width: 0;
+                    border-bottom-width: 0;
+                    border-right-width: var(--galleries-pointer-border-width);
+                    border-top-width: var(--galleries-pointer-border-width)
+                  }
+
+                  .elementor-gallery__titles-container.e--pointer-framed.e--animation-corners .elementor-item:before {
+                    border-left-width: var(--galleries-pointer-border-width);
+                    border-bottom-width: 0;
+                    border-right-width: 0;
+                    border-top-width: var(--galleries-pointer-border-width)
+                  }
+
+                  .elementor-gallery__titles-container.e--pointer-framed.e--animation-corners .elementor-item:after {
+                    border-left-width: 0;
+                    border-bottom-width: var(--galleries-pointer-border-width);
+                    border-right-width: var(--galleries-pointer-border-width);
+                    border-top-width: 0
+                  }
+
+                  .elementor-gallery__titles-container .e--pointer-double-line .elementor-item:after,
+                  .elementor-gallery__titles-container .e--pointer-double-line .elementor-item:before,
+                  .elementor-gallery__titles-container .e--pointer-overline .elementor-item:before,
+                  .elementor-gallery__titles-container .e--pointer-underline .elementor-item:after {
+                    height: var(--galleries-pointer-border-width)
+                  }
+
+                  .elementor-gallery-title {
+                    --space-between: 10px;
+                    cursor: pointer;
+                    color: #6d7882;
+                    font-weight: 500;
+                    position: relative;
+                    padding: 7px 14px;
+                    transition: all .3s
+                  }
+
+                  .elementor-gallery-title--active {
+                    color: #495157
+                  }
+
+                  .elementor-gallery-title:not(:last-child) {
+                    margin-right: var(--space-between)
+                  }
+
+                  .elementor-gallery-item__title+.elementor-gallery-item__description {
+                    margin-top: var(--description-margin-top)
+                  }
+
+                  .e-gallery-item.elementor-gallery-item {
+                    transition-property: all
+                  }
+
+                  .e-gallery-item.elementor-animated-content .elementor-animated-item--enter-from-bottom,
+                  .e-gallery-item.elementor-animated-content .elementor-animated-item--enter-from-left,
+                  .e-gallery-item.elementor-animated-content .elementor-animated-item--enter-from-right,
+                  .e-gallery-item.elementor-animated-content .elementor-animated-item--enter-from-top,
+                  .e-gallery-item:focus .elementor-gallery__item-overlay-bg,
+                  .e-gallery-item:focus .elementor-gallery__item-overlay-content,
+                  .e-gallery-item:focus .elementor-gallery__item-overlay-content__description,
+                  .e-gallery-item:focus .elementor-gallery__item-overlay-content__title,
+                  .e-gallery-item:hover .elementor-gallery__item-overlay-bg,
+                  .e-gallery-item:hover .elementor-gallery__item-overlay-content,
+                  .e-gallery-item:hover .elementor-gallery__item-overlay-content__description,
+                  .e-gallery-item:hover .elementor-gallery__item-overlay-content__title {
+                    opacity: 1
+                  }
+
+                  a.elementor-item.elementor-gallery-title {
+                    color: var(--galleries-title-color-normal)
+                  }
+
+                  a.elementor-item.elementor-gallery-title.elementor-item-active,
+                  a.elementor-item.elementor-gallery-title.highlighted,
+                  a.elementor-item.elementor-gallery-title:focus,
+                  a.elementor-item.elementor-gallery-title:hover {
+                    color: var(--galleries-title-color-hover)
+                  }
+
+                  a.elementor-item.elementor-gallery-title.elementor-item-active {
+                    color: var(--gallery-title-color-active)
+                  }
+
+                  .e-con-inner>.elementor-widget-gallery,
+                  .e-con>.elementor-widget-gallery {
+                    width: var(--container-widget-width);
+                    --flex-grow: var(--container-widget-flex-grow)
                   }
                 </style>
-                <div class="elementor-image-gallery">
-                  <div id='gallery-1' class='gallery galleryid-1883 gallery-columns-3 gallery-size-thumbnail'>
-                    <figure class='gallery-item'>
-                      <div class='gallery-icon portrait'> <a data-elementor-open-lightbox="yes"
-                          data-elementor-lightbox-slideshow="be7dfb0" data-elementor-lightbox-title="WEDDINGKIT-5-1.jpg"
-                          data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg4OCwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9XRURESU5HS0lULTUtMS5qcGciLCJzbGlkZXNob3ciOiJiZTdkZmIwIn0%3D"
-                          href='./images/2023-11-WEDDINGKIT-5-1.jpg'><img width="150" height="150"
-                            src="./images/2023-11-WEDDINGKIT-5-1-150x150.jpg"
-                            class="attachment-thumbnail size-thumbnail" alt="" decoding="async" /></a> </div>
-                    </figure>
-                    <figure class='gallery-item'>
-                      <div class='gallery-icon portrait'> <a data-elementor-open-lightbox="yes"
-                          data-elementor-lightbox-slideshow="be7dfb0" data-elementor-lightbox-title="WEDDINGKIT-4-1.jpg"
-                          data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg4NywidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9XRURESU5HS0lULTQtMS5qcGciLCJzbGlkZXNob3ciOiJiZTdkZmIwIn0%3D"
-                          href='./images/2023-11-WEDDINGKIT-4-1.jpg'><img width="150" height="150"
-                            src="./images/2023-11-WEDDINGKIT-4-1-150x150.jpg"
-                            class="attachment-thumbnail size-thumbnail" alt="" decoding="async" /></a> </div>
-                    </figure>
-                    <figure class='gallery-item'>
-                      <div class='gallery-icon landscape'> <a data-elementor-open-lightbox="yes"
-                          data-elementor-lightbox-slideshow="be7dfb0"
-                          data-elementor-lightbox-title="pexels-photo-1048029.png"
-                          data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg4MiwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9wZXhlbHMtcGhvdG8tMTA0ODAyOS0xLnBuZyIsInNsaWRlc2hvdyI6ImJlN2RmYjAifQ%3D%3D"
-                          href='./images/2023-11-pexels-photo-1048029-1.png'><img loading="lazy" width="150"
-                            height="150" src="./images/2023-11-pexels-photo-1048029-1-150x150.png"
-                            class="attachment-thumbnail size-thumbnail" alt="" decoding="async" /></a> </div>
-                    </figure>
-                    <figure class='gallery-item'>
-                      <div class='gallery-icon landscape'> <a data-elementor-open-lightbox="yes"
-                          data-elementor-lightbox-slideshow="be7dfb0"
-                          data-elementor-lightbox-title="pexels-photo-931796.png"
-                          data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg4MCwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9wZXhlbHMtcGhvdG8tOTMxNzk2LTEucG5nIiwic2xpZGVzaG93IjoiYmU3ZGZiMCJ9"
-                          href='./images/2023-11-pexels-photo-931796-1.png'><img loading="lazy" width="150" height="150"
-                            src="./images/2023-11-pexels-photo-931796-1-150x150.png"
-                            class="attachment-thumbnail size-thumbnail" alt="" decoding="async" /></a> </div>
-                    </figure>
-                    <figure class='gallery-item'>
-                      <div class='gallery-icon landscape'> <a data-elementor-open-lightbox="yes"
-                          data-elementor-lightbox-slideshow="be7dfb0"
-                          data-elementor-lightbox-title="pexels-photo-256737.png"
-                          data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg4MSwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9wZXhlbHMtcGhvdG8tMjU2NzM3LTEucG5nIiwic2xpZGVzaG93IjoiYmU3ZGZiMCJ9"
-                          href='./images/2023-11-pexels-photo-256737-1.png'><img loading="lazy" width="150" height="150"
-                            src="./images/2023-11-pexels-photo-256737-1-150x150.png"
-                            class="attachment-thumbnail size-thumbnail" alt="" decoding="async" /></a> </div>
-                    </figure>
-                    <figure class='gallery-item'>
-                      <div class='gallery-icon landscape'> <a data-elementor-open-lightbox="yes"
-                          data-elementor-lightbox-slideshow="be7dfb0"
-                          data-elementor-lightbox-title="pexels-photo-265730.png"
-                          data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg3OCwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9wZXhlbHMtcGhvdG8tMjY1NzMwLTEucG5nIiwic2xpZGVzaG93IjoiYmU3ZGZiMCJ9"
-                          href='./images/2023-11-pexels-photo-265730-1.png'><img loading="lazy" width="150" height="150"
-                            src="./images/2023-11-pexels-photo-265730-1-150x150.png"
-                            class="attachment-thumbnail size-thumbnail" alt="" decoding="async" /></a> </div>
-                    </figure>
-                  </div>
-                </div>
+                <div class="elementor-gallery__container"> <a
+                    class="e-gallery-item elementor-gallery-item elementor-animated-content"
+                    href="./images/2023-11-pexels-photo-256737-1.png" data-elementor-open-lightbox="yes"
+                    data-elementor-lightbox-slideshow="0d18454" data-elementor-lightbox-title="pexels-photo-256737.png"
+                    data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg4MSwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9wZXhlbHMtcGhvdG8tMjU2NzM3LTEucG5nIiwic2xpZGVzaG93IjoiMGQxODQ1NCJ9">
+                    <div class="e-gallery-image elementor-gallery-item__image"
+                      data-thumbnail="http://127.0.0.1/wordpress/wp-content/uploads/2023/11/pexels-photo-256737-1-300x167.png"
+                      data-width="300" data-height="167" aria-label="" role="img"></div>
+                    <div class="elementor-gallery-item__overlay"></div>
+                  </a> <a class="e-gallery-item elementor-gallery-item elementor-animated-content"
+                    href="./images/2023-11-pexels-photo-931796-1.png" data-elementor-open-lightbox="yes"
+                    data-elementor-lightbox-slideshow="0d18454" data-elementor-lightbox-title="pexels-photo-931796.png"
+                    data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg4MCwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9wZXhlbHMtcGhvdG8tOTMxNzk2LTEucG5nIiwic2xpZGVzaG93IjoiMGQxODQ1NCJ9">
+                    <div class="e-gallery-image elementor-gallery-item__image"
+                      data-thumbnail="http://127.0.0.1/wordpress/wp-content/uploads/2023/11/pexels-photo-931796-1-300x167.png"
+                      data-width="300" data-height="167" aria-label="" role="img"></div>
+                    <div class="elementor-gallery-item__overlay"></div>
+                  </a> <a class="e-gallery-item elementor-gallery-item elementor-animated-content"
+                    href="./images/2023-11-pexels-photo-265750-1.png" data-elementor-open-lightbox="yes"
+                    data-elementor-lightbox-slideshow="0d18454" data-elementor-lightbox-title="pexels-photo-265750.png"
+                    data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg3OSwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9wZXhlbHMtcGhvdG8tMjY1NzUwLTEucG5nIiwic2xpZGVzaG93IjoiMGQxODQ1NCJ9">
+                    <div class="e-gallery-image elementor-gallery-item__image"
+                      data-thumbnail="http://127.0.0.1/wordpress/wp-content/uploads/2023/11/pexels-photo-265750-1-300x167.png"
+                      data-width="300" data-height="167" aria-label="" role="img"></div>
+                    <div class="elementor-gallery-item__overlay"></div>
+                  </a> <a class="e-gallery-item elementor-gallery-item elementor-animated-content"
+                    href="./images/2023-11-pexels-photo-265730-1.png" data-elementor-open-lightbox="yes"
+                    data-elementor-lightbox-slideshow="0d18454" data-elementor-lightbox-title="pexels-photo-265730.png"
+                    data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg3OCwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9wZXhlbHMtcGhvdG8tMjY1NzMwLTEucG5nIiwic2xpZGVzaG93IjoiMGQxODQ1NCJ9">
+                    <div class="e-gallery-image elementor-gallery-item__image"
+                      data-thumbnail="http://127.0.0.1/wordpress/wp-content/uploads/2023/11/pexels-photo-265730-1-300x167.png"
+                      data-width="300" data-height="167" aria-label="" role="img"></div>
+                    <div class="elementor-gallery-item__overlay"></div>
+                  </a> <a class="e-gallery-item elementor-gallery-item elementor-animated-content"
+                    href="./images/2023-11-pexels-photo-1048029-1.png" data-elementor-open-lightbox="yes"
+                    data-elementor-lightbox-slideshow="0d18454" data-elementor-lightbox-title="pexels-photo-1048029.png"
+                    data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg4MiwidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC9wZXhlbHMtcGhvdG8tMTA0ODAyOS0xLnBuZyIsInNsaWRlc2hvdyI6IjBkMTg0NTQifQ%3D%3D">
+                    <div class="e-gallery-image elementor-gallery-item__image"
+                      data-thumbnail="http://127.0.0.1/wordpress/wp-content/uploads/2023/11/pexels-photo-1048029-1-300x167.png"
+                      data-width="300" data-height="167" aria-label="" role="img"></div>
+                    <div class="elementor-gallery-item__overlay"></div>
+                  </a> <a class="e-gallery-item elementor-gallery-item elementor-animated-content"
+                    href="./images/2023-11-02-8-1.png" data-elementor-open-lightbox="yes"
+                    data-elementor-lightbox-slideshow="0d18454" data-elementor-lightbox-title="02-8.png"
+                    data-e-action-hash="#elementor-action%3Aaction%3Dlightbox%26settings%3DeyJpZCI6MTg3MywidXJsIjoiaHR0cDpcL1wvMTI3LjAuMC4xXC93b3JkcHJlc3NcL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMjNcLzExXC8wMi04LTEucG5nIiwic2xpZGVzaG93IjoiMGQxODQ1NCJ9">
+                    <div class="e-gallery-image elementor-gallery-item__image"
+                      data-thumbnail="http://127.0.0.1/wordpress/wp-content/uploads/2023/11/02-8-1-300x300.png"
+                      data-width="300" data-height="300" aria-label="" role="img"></div>
+                    <div class="elementor-gallery-item__overlay"></div>
+                  </a> </div>
               </div>
             </div>
             <div
@@ -1706,7 +1820,7 @@
           <div
             class="elementor-element elementor-element-6d39c166 wdp-sticky-section-no elementor-widget elementor-widget-image"
             data-id="6d39c166" data-element_type="widget" data-widget_type="image.default">
-            <div class="elementor-widget-container"> <img loading="lazy" decoding="async" width="128" height="128"
+            <div class="elementor-widget-container"> <img decoding="async" width="128" height="128"
                 src="./images/2023-11-WDP-ICON-2.png" class="attachment-full size-full wp-image-1889" alt="" /> </div>
           </div>
           <div
@@ -1726,9 +1840,21 @@
   </div>
   </div>
   </section>
+  <div class="elementor-element elementor-element-71bde46 e-flex e-con-boxed e-con e-parent" data-id="71bde46"
+    data-element_type="container" data-settings="{&quot;content_width&quot;:&quot;boxed&quot;}"
+    data-core-v316-plus="true">
+    <div class="e-con-inner"> </div>
   </div>
+  </div>
+  <link rel='stylesheet' id='elementor-gallery-css' href='./css/elementor-assets-lib-e-gallery-css-e-gallery.min.css'
+    media='all' />
   <link rel='stylesheet' id='e-animations-css' href='./css/elementor-assets-lib-animations-animations.min.css'
     media='all' />
+  <script id='pgc-simply-gallery-plugin-lightbox-script-js-extra'>
+    var PGC_SGB_LIGHTBOX = { "lightboxPreset": "", "postType": "page", "lightboxSettigs": "" };
+  </script>
+  <script src='./js/simply-gallery-block-plugins-pgc_sgb_lightbox.min.js'
+    id='pgc-simply-gallery-plugin-lightbox-script-js'></script>
   <script src='./js/weddingpress-assets-js-wdp-swiper.min.js' id='wdp-swiper-js-js'></script>
   <script src='./js/weddingpress-assets-js-qr-code.js' id='weddingpress-qr-js'></script>
   <script src='./js/weddingpress-assets-js-wdp-horizontal.js' id='wdp-horizontal-js-js'></script>
@@ -1742,6 +1868,7 @@
   <script src='./js/weddingpress-addons-comment-kit-js-libs-jquery.placeholder.min.js' id='wdp_placeholder-js'></script>
   <script src='./js/weddingpress-addons-comment-kit-js-libs-autosize.min.js' id='wdp_autosize-js'></script>
   <script src='./js/hello-elementor-assets-js-hello-frontend.min.js' id='hello-theme-frontend-js'></script>
+  <script src='./js/elementor-assets-lib-e-gallery-js-e-gallery.min.js' id='elementor-gallery-js'></script>
   <script src='./js/elementor-pro-assets-js-webpack-pro.runtime.min.js' id='elementor-pro-webpack-runtime-js'></script>
   <script src='./js/elementor-assets-js-webpack.runtime.min.js' id='elementor-webpack-runtime-js'></script>
   <script src='./js/elementor-assets-js-frontend-modules.min.js' id='elementor-frontend-modules-js'></script>
